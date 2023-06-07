@@ -16,16 +16,17 @@ function gmMainMenu()
     addGMFunction(_("buttonGM", "End Scenario +"),gmEndScenario)
 end
 
+--- Provides commands specific to the scenario for GM use
+-- TODO: remove options from this menu after they're used
 function gmMissionCommands()
     clearGMFunctions() -- Clear the menu
-    -- TODO: remove options from this menu after they're used?
     addGMFunction(_("buttonGM", "Mission Commands -"),gmMainMenu)
     addGMFunction(_("buttonGM", "1) Destroy JJ's Ship"),gmMission1)
-    addGMFunction(_("buttonGM", "2) We're Good, Low Air"),gmMission2)
+    addGMFunction(_("buttonGM", "2) We're Good"),gmMission2)
     addGMFunction(_("buttonGM", "3) Air Running Out"),gmMission3)
-    addGMFunction(_("buttonGM", "4) Starting to Suffocate"),gmMission4)
-    addGMFunction(_("buttonGM", "5) JJ Dead, Return to Base"),gmMission5)
-    addGMFunction(_("buttonGM", "6) JJ Alive, Return to Base"),gmMission6)
+    addGMFunction(_("buttonGM", "4) Suffocating"),gmMission4)
+    addGMFunction(_("buttonGM", "5) JJ Dead, Extract"),gmMission5)
+    addGMFunction(_("buttonGM", "6) JJ Alive, Extract"),gmMission6)
 end
 
 -- function gmEnemyCommands()
@@ -89,7 +90,7 @@ function gmMission1()
         .. "negotiations.")
     )
 end
--- 2) We're Good, Low Air but can last a while
+-- 2) We're Good
 -- Do this shortly after the capsule ejects
 function gmMission2()
     -- Clear and reset the menu
@@ -107,7 +108,7 @@ function gmMission3()
 
 end
 
--- 4) Starting to Suffocate
+-- 4) Suffocating
 -- After 1-3 minutes to heighten stress, they'll die soon
 function gmMission4()
     -- Clear and reset the menu
@@ -116,7 +117,7 @@ function gmMission4()
 
 end
 
--- 5) JJ Dead, Return to Base
+-- 5) JJ Dead, Extract
 -- After 5-6 minutes. Let them fly back to base if there's time, then end scenario
 function gmMission5()
     -- Clear and reset the menu
@@ -140,7 +141,7 @@ end
     --         )
     --     else
 
--- -- 6) JJ Alive and Picked Up, Return to Base
+-- 6) JJ Alive, Extract
 function gmMission6()
     -- Clear and reset the menu
     clearGMFunctions()
