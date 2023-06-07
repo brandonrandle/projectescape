@@ -26,7 +26,7 @@ function gmMissionCommands()
     addGMFunction(_("buttonGM", "3) Air Running Out"),gmMission3)
     addGMFunction(_("buttonGM", "4) Suffocating"),gmMission4)
     addGMFunction(_("buttonGM", "5) JJ Dead, Extract"),gmMission5)
-    addGMFunction(_("buttonGM", "6) JJ Alive, Extract"),gmMission6)
+    addGMFunction(_("buttonGM", "5) JJ Alive, Extract"),gmMission6)
 end
 
 -- function gmEnemyCommands()
@@ -113,6 +113,13 @@ function gmMission3()
     clearGMFunctions()
     gmMainMenu()
 
+    jj_transport:sendCommsMessage(trainee,
+        _("incCall", "J.E. Thompson, come in! My crew has discovered that we
+        took some damage during the launch; we are losing air rapidly and have
+        no way to replenish it. I'm not sure how long we have, but please
+        hurry!")
+    )
+
 end
 
 -- 4) Suffocating
@@ -121,6 +128,11 @@ function gmMission4()
     -- Clear and reset the menu
     clearGMFunctions()
     gmMainMenu()
+
+    jj_transport:sendCommsMessage(trainee,
+        _("incCall", "J.E. Thompson, mayday, mayday, our crew is starting to
+        faint from the lack of air; we need you ASAP!")
+    )
 
 end
 
@@ -131,22 +143,14 @@ function gmMission5()
     clearGMFunctions()
     gmMainMenu()
 
+    central_command:sendCommsMessage(trainee,
+        _("incCall", "J.E. Thompson, this is Central Command. We've lost JJ
+        Johnson and his crew. This is a great tragedy not only for their
+        families and friends but also for our nation's peace as a whole. Return
+        to command for debriefing.")
+    )
+
 end
-
-    -- lifepod = lifepod + delta
-    -- if not lifepod:isValid() then
-    --     -- Escape pod picked up, stop the lifepod
-    --     if lifepod > 60 * 5 then
-    --         -- If he spends more than 5 minutes in the escape pod, the diplomat died.
-    --         jjj_alive = false
-    --         mission_state = missionRT4Died
-    --         central_command:sendCommsMessage(
-    --             trainee,
-    --             _("incCall", [[J.J. Johnson seems to have suffocated. This is a great loss for our cause of peace.
-
--- Please deliver his body back to Research-1. We will arrange for you to take over his mission.]])
-    --         )
-    --     else
 
 -- 6) JJ Alive, Extract
 function gmMission6()
@@ -154,16 +158,13 @@ function gmMission6()
     clearGMFunctions()
     gmMainMenu()
 
-end
-    --         -- Diplomat lives, drop him off at Orion-5.
-    --         jjj_alive = true
-    --         mission_state = missionRT4PickedUp
-    --         central_command:sendCommsMessage(
-    --             trainee,
-    --             _("incCall", [[Just received message that Sir Johnson is safely aboard your ship! Great job!
+    central_command:sendCommsMessage(trainee,
+        _("incCall", "J.E. Thompson, this is Central Command. Great work
+        retrieving JJ Johnson safely! Return him to command and report for your
+        debriefing.")
+    )
 
--- Please deliver the diplomat to Orion-5 in sector G3. Do this by docking with the station.]])
-    --         )
+end
 
 -- ##########################################################################
 -- ## GM Enemy Commands ##
