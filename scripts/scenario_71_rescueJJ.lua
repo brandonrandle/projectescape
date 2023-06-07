@@ -97,6 +97,13 @@ function gmMission2()
     clearGMFunctions()
     gmMainMenu()
 
+    jj_transport:sendCommsMessage(trainee,
+        _("incCall", "Greetings crew of the J.E. Thompson, this is JJ Johnson.
+        Thank you for responding to our signal. My crew and I managed to launch
+        in an escape pod before our ship was destroyed - we should be able to
+        hold out until you can pick us up. We will stand by until then!")
+    )
+
 end
 
 -- 3) Air Running out
