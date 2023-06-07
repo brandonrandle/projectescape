@@ -213,6 +213,8 @@ function init()
     exuari_RT4_guard1:orderIdle()
     exuari_RT4_guard2:orderIdle()
 
+end
+
 
 --- Runs during game loop
 -- Victory conditions handled manually by GM, so nothing monitored here so far.
