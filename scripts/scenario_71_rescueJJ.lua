@@ -67,9 +67,9 @@ function gmMission1()
     gmMainMenu()
 
     -- Destroy JJ Johnson's ship and activate the enemies on-site
-    transport_RT4:destroy()
-    exuari_RT4_guard1:orderRoaming()
-    exuari_RT4_guard2:orderRoaming()
+    jj_transport:destroy()
+    exuari_guard1:orderRoaming()
+    exuari_guard2:orderRoaming()
 
     -- Spawn the life pod
     lifepod = SupplyDrop()
@@ -207,13 +207,29 @@ function init()
     -- Create JJ Johnson's ship
     -- We create a ship rather than go straight to just having an escape pod so
     -- if the trainees probe the area they can see his ship.
-    transport_RT4 = CpuShip():setTemplate("Flavia"):setFaction("Human Navy"):setPosition(3750, 31250)
-    transport_RT4:orderIdle():setCallSign("RT-4"):setCommsScript("")
-    transport_RT4:setHull(1):setShieldsMax(1, 1)
+    jj_transport = CpuShip()
+    jj_transport:setTemplate("Flavia")
+    jj_transport:setFaction("Human Navy")
+    jj_transport:setPosition(3750, 31250)
+    jj_transport:setCallSign("RT-4")
+    jj_transport:setCommsScript("")
+    jj_transport:setHull(1):setShieldsMax(1, 1)
 
     -- Small Exuari strike team, guarding RT-4 in the nebula at G5.
-    exuari_RT4_guard1 = CpuShip():setTemplate("Adder MK5"):setFaction("Exuari"):setPosition(3550, 31250):setRotation(0)
-    exuari_RT4_guard2 = CpuShip():setTemplate("Adder MK5"):setFaction("Exuari"):setPosition(3950, 31250):setRotation(180)
+    exuari_guard1 = CpuShip()
+    exuari_guard1:setTemplate("Adder MK5")
+    exuari_guard1:setFaction("Exuari")
+    exuari_guard1:setPosition(3550, 31250)
+    exuari_guard1:setRotation(0)
+
+    exuari_guard2 = CpuShip()
+    exuari_guard2:setTemplate("Adder MK5")
+    exuari_guard2:setFaction("Exuari")
+    exuari_guard2:setPosition(3950, 31250)
+    exuari_guard2:setRotation(180)
+
+    -- Set orders
+    jj_transport:orderIdle()
     exuari_RT4_guard1:orderIdle()
     exuari_RT4_guard2:orderIdle()
 
