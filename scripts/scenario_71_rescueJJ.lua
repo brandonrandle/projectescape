@@ -172,6 +172,9 @@ end
 --- Runs when the scenario starts
 -- Sets up initial game state, creating ships, stations, environment, etc.
 function init()
+    -- Setup GM menu
+    gmMainMenu()
+
     -- Create the main ship for the trainees.
     trainee = PlayerSpaceship():setFaction("Human Navy"):setTemplate("Atlantis")
     trainee:setPosition(22400, 18200):setCallSign("J.E. Thompson")
