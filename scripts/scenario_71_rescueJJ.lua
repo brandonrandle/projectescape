@@ -29,15 +29,16 @@ function gmMissionCommands()
     addGMFunction(_("buttonGM", "5) JJ Alive, Extract"),gmMission6)
 end
 
--- function gmEnemyCommands()
---     clearGMFunctions() -- Clear the menu
---     addGMFunction(_("buttonGM", "Enemy Commands -"),gmMainMenu)
---     addGMFunction(_("buttonGM", "Spawn Tier 1 Enemies"),gmSpawnT1)
---     addGMFunction(_("buttonGM", "Spawn Tier 2 Enemies"),gmSpawnT2)
---     addGMFunction(_("buttonGM", "Spawn Tier 3 Enemies"),gmSpawnT3)
---     addGMFunction(_("buttonGM", "Spawn Overwhelming Enemies"),gmSpawnAll)
---     addGMFunction(_("buttonGM", "Remove All Enemies"),gmRemoveAll)
--- end
+--- Provides commands for spawning and removing enemies as-needed in any scenario
+function gmEnemyCommands()
+    clearGMFunctions() -- Clear the menu
+    addGMFunction(_("buttonGM", "Enemy Commands -"),gmMainMenu)
+    addGMFunction(_("buttonGM", "Spawn Tier 1 Enemies"),gmSpawnT1)
+    addGMFunction(_("buttonGM", "Spawn Tier 2 Enemies"),gmSpawnT2)
+    addGMFunction(_("buttonGM", "Spawn Tier 3 Enemies"),gmSpawnT3)
+    addGMFunction(_("buttonGM", "Spawn Overwhelming Enemies"),gmSpawnAll)
+    addGMFunction(_("buttonGM", "Remove All Enemies"),gmRemoveAll)
+end
 
 -- function gmModifyShip()
 --     clearGMFunctions() -- Clear the menu
@@ -169,6 +170,41 @@ end
 -- ##########################################################################
 -- ## GM Enemy Commands ##
 -- ##########################################################################
+
+--- Spawns easy difficulty enemies at random edge of trainee ship's radar
+function gmSpawnT1()
+    -- Clear and reset the menu
+    clearGMFunctions()
+    gmMainMenu()
+end
+
+--- Spawns medium difficulty enemies at random edge of trainee ship's radar
+function gmSpawnT2()
+    -- Clear and reset the menu
+    clearGMFunctions()
+    gmMainMenu()
+end
+
+--- Spawns hard difficulty enemies at random edge of trainee ship's radar
+function gmSpawnT3()
+    -- Clear and reset the menu
+    clearGMFunctions()
+    gmMainMenu()
+end
+
+--- Spawns an obscene number of enemies all around trainee ship
+function gmSpawnAll()
+    -- Clear and reset the menu
+    clearGMFunctions()
+    gmMainMenu()
+end
+
+--- Removes all enemies from the map
+function gmRemoveAll()
+    -- Clear and reset the menu
+    clearGMFunctions()
+    gmMainMenu()
+end
 
 -- ##########################################################################
 -- ## GM Modify Trainee Ship ##
