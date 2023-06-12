@@ -334,6 +334,18 @@ function gmSetRetrieveData()
     clearGMFunctions()
     gmMainMenu()
 
+    -- Create the main ship for the trainees.
+    trainee = PlayerSpaceship():setFaction("Human Navy"):setTemplate("Atlantis")
+    trainee:setPosition(23400, 16100):setCallSign("J.E. Thompson")
+    trainee:setRotation(180) -- make sure it's facing away from station
+    trainee:commandDock(central_command)
+
+    trainee:addToShipLog("We have received reports that a hostile force is "
+    .. "enroute to one of our satellites on the border of our space. This satellite "
+    .. "has crucial data that must be retrieved before the Exuari get their hands "
+    .. "on it. Retrieve the data and return it to command. Do not allow the Exuari "
+    .. "to have it.", "white")
+
     satellite = SpaceStation()
     satellite:setTemplate("Small Station")
     satellite:setFaction("Human Navy")
@@ -343,11 +355,6 @@ function gmSetRetrieveData()
 
     table.insert(friendList, satellite)
 
-    trainee:addToShipLog("We have received reports that a hostile force is "
-    .. "enroute to one of our satellites on the border of our space. This satellite "
-    .. "has crucial data that must be retrieved before the Exuari get their hands "
-    .. "on it. Retrieve the data and return it to command. Do not allow the Exuari "
-    .. "to have it.", "white")
 end
 
 function gmClearRetrieveData()
