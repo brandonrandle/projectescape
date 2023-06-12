@@ -12,13 +12,13 @@ function gmMainMenu()
     clearGMFunctions() -- Clear the menu
     addGMFunction(_("buttonGM", "Rescue JJ +"),gmRescueJJ)
     addGMFunction(_("buttonGM", "Waves +"),gmWaves)
-    addGMFunction(_("buttonGM", "Retrieve the Data +"),gmRetrieveTheData)
+    addGMFunction(_("buttonGM", "Retrieve Data +"),gmRetrieveData)
     addGMFunction(_("buttonGM", "Enemy Commands +"),gmEnemyCommands)
     addGMFunction(_("buttonGM", "Modify Trainee Ship +"),gmModifyShip)
     addGMFunction(_("buttonGM", "End Scenario +"),gmEndScenario)
 end
 
---- Provides commands specific to the scenario for GM use
+--- Rescue JJ GM Commands
 -- TODO: remove options from this menu after they're used
 function gmRescueJJ()
     clearGMFunctions() -- Clear the menu
@@ -29,6 +29,20 @@ function gmRescueJJ()
     addGMFunction(_("buttonGM", "4) Suffocating"),gmRescueJJ4)
     addGMFunction(_("buttonGM", "5) JJ Dead, Extract"),gmRescueJJ5)
     addGMFunction(_("buttonGM", "5) JJ Alive, Extract"),gmRescueJJ6)
+end
+
+--- Waves GM Commands
+-- TODO: remove options from this menu after they're used
+function gmWaves()
+    clearGMFunctions() -- Clear the menu
+    addGMFunction(_("buttonGM", "Waves -"),gmMainMenu)
+end
+
+--- Retrieve Data GM Commands
+-- TODO: remove options from this menu after they're used
+function gmRetrieveData()
+    clearGMFunctions() -- Clear the menu
+    addGMFunction(_("buttonGM", "Retrieve Data -"),gmMainMenu)
 end
 
 --- Provides commands for spawning and removing enemies as-needed in any scenario
