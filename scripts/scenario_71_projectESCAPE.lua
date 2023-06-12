@@ -13,12 +13,12 @@
 -- ##########################################################################
 function gmMainMenu()
     clearGMFunctions() -- Clear the menu
-    addGMFunction(_("buttonGM", "Rescue JJ +"),gmRescueJJ)
-    addGMFunction(_("buttonGM", "Waves +"),gmWaves)
-    addGMFunction(_("buttonGM", "Retrieve Data +"),gmRetrieveData)
-    addGMFunction(_("buttonGM", "Enemy Commands +"),gmEnemyCommands)
+    addGMFunction(_("buttonGM", "Rescue JJ +          "),gmRescueJJ)
+    addGMFunction(_("buttonGM", "Waves +              "),gmWaves)
+    addGMFunction(_("buttonGM", "Retrieve Data +      "),gmRetrieveData)
+    addGMFunction(_("buttonGM", "Enemy Commands +     "),gmEnemyCommands)
     addGMFunction(_("buttonGM", "Modify Trainee Ship +"),gmModifyShip)
-    addGMFunction(_("buttonGM", "End Scenario +"),gmEndScenario)
+    addGMFunction(_("buttonGM", "End Scenario +       "),gmEndScenario)
 end
 
 --- Rescue JJ GM Commands
