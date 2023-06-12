@@ -129,7 +129,7 @@ function gmRescueJJ2()
     clearGMFunctions()
     gmMainMenu()
 
-    jj_transport:sendCommsMessage(trainee,
+    lifepod:sendCommsMessage(trainee,
         _("incCall", "Greetings crew of the J.E. Thompson, this is JJ Johnson. "
         .. "Thank you for responding to our signal. My crew and I managed to launch "
         .. "in an escape pod before our ship was destroyed - we should be able to "
@@ -145,7 +145,7 @@ function gmRescueJJ3()
     clearGMFunctions()
     gmMainMenu()
 
-    jj_transport:sendCommsMessage(trainee,
+    lifepod:sendCommsMessage(trainee,
         _("incCall", "J.E. Thompson, come in! My crew has discovered that we "
         .. "took some damage during the launch; we are losing air rapidly and have "
         .. "no way to replenish it. I'm not sure how long we have, but please "
@@ -161,7 +161,7 @@ function gmRescueJJ4()
     clearGMFunctions()
     gmMainMenu()
 
-    jj_transport:sendCommsMessage(trainee,
+    lifepod:sendCommsMessage(trainee,
         _("incCall", "J.E. Thompson, mayday, mayday, our crew is starting to "
         .. "faint from the lack of air; we need you ASAP!")
     )
