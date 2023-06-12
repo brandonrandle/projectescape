@@ -234,8 +234,8 @@ function gmSetRescueJJ()
 
     -- Set orders
     jj_transport:orderIdle()
-    exuari_RT4_guard1:orderIdle()
-    exuari_RT4_guard2:orderIdle()
+    exuari_guard1:orderIdle()
+    exuari_guard2:orderIdle()
 end
 
 function gmClearRescueJJ()
