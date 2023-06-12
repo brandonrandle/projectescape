@@ -322,6 +322,28 @@ function gmRetrieveData2()
     clearGMFunctions()
     gmMainMenu()
 
+    hostile_1 = CpuShip()
+    hostile_1:setTemplate("Phobos T3")
+    hostile_1:setFaction("Exuari")
+    hostile_1:setPosition(60000, 41000)
+    hostile_1:orderRoaming()
+
+    hostile_2 = CpuShip()
+    hostile_2:setTemplate("MT52 Hornet")
+    hostile_2:setFaction("Exuari")
+    hostile_2:setPosition(60000, 40975)
+    hostile_2:orderRoaming()
+
+    hostile_3 = CpuShip()
+    hostile_3:setTemplate("MT52 Hornet")
+    hostile_3:setFaction("Exuari")
+    hostile_3:setPosition(60000, 41025)
+    hostile_3:orderRoaming()
+
+    table.insert(enemyList, hostile_1)
+    table.insert(enemyList, hostile_2)
+    table.insert(enemyList, hostile_3)
+
     satellite:sendCommsMessage(trainee,
         _("incCall", "J.E. Thompson, as you may already be aware, the reported "
         .. "hostile force has now arrived. Good luck. ")
