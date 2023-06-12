@@ -5,6 +5,9 @@
 -- Scenario
 -- @script scenario_71_projectESCAPE
 
+-- TODO: Update staff handbook with functionality in this script
+-- TODO: Update staff handbook mission assignment text to match this
+
 -- ##########################################################################
 -- ## GM MENU ##
 -- ##########################################################################
@@ -29,6 +32,8 @@ function gmRescueJJ()
     addGMFunction(_("buttonGM", "4) Suffocating"),gmRescueJJ4)
     addGMFunction(_("buttonGM", "5) JJ Dead, Extract"),gmRescueJJ5)
     addGMFunction(_("buttonGM", "5) JJ Alive, Extract"),gmRescueJJ6)
+    addGMFunction(_("buttonGM", "Set Mission"),gmSetRescueJJ)
+    addGMFunction(_("buttonGM", "Clear Mission"),gmClearRescueJJ)
 end
 
 --- Waves GM Commands
@@ -36,6 +41,9 @@ end
 function gmWaves()
     clearGMFunctions() -- Clear the menu
     addGMFunction(_("buttonGM", "Waves -"),gmMainMenu)
+    addGMFunction(_("buttonGM", "Set Mission"),gmSetWaves)
+    addGMFunction(_("buttonGM", "Clear Mission"),gmClearWaves)
+    -- TODO: add steps for mission
 end
 
 --- Retrieve Data GM Commands
@@ -43,6 +51,9 @@ end
 function gmRetrieveData()
     clearGMFunctions() -- Clear the menu
     addGMFunction(_("buttonGM", "Retrieve Data -"),gmMainMenu)
+    addGMFunction(_("buttonGM", "Set Mission"),gmSetRetrieveData)
+    addGMFunction(_("buttonGM", "Clear Mission"),gmClearRetrieveData)
+    -- TODO: add steps for mission
 end
 
 --- Provides commands for spawning and removing enemies as-needed in any scenario
@@ -61,8 +72,9 @@ end
 --     addGMFunction(_("buttonGM", "Modify Trainee Ship -"),gmMainMenu)
 --     addGMFunction(_("buttonGM", "Reset Hull"),gmResetHull)
 --     addGMFunction(_("buttonGM", "Reset Energy"),gmResetEnergy)
---     addGMFunction(_("buttonGM", "Reset Weapon Supply"),gmResetWeapons)
+--     addGMFunction(_("buttonGM", "Fill Weapon Supply"),gmResetWeapons)
 --     addGMFunction(_("buttonGM", "Reset Probe Supply"),gmResetProbes)
+--     -- TODO: Remove weapons button
 -- end
 
 -- function gmEndScenario()
@@ -70,6 +82,7 @@ end
 --     addGMFunction(_("buttonGM", "End Scenario -"),gmMainMenu)
 --     addGMFunction(_("buttonGM", "Victory"),gmVictory)
 --     addGMFunction(_("buttonGM", "Defeat"),gmDefeat)
+--     -- TODO: Setup victory/defeat message in a way that DOES NOT end scenario
 -- end
 
 -- ##########################################################################
@@ -183,6 +196,99 @@ function gmRescueJJ6()
 
 end
 
+function gmSetRescueJJ()
+    -- Clear and reset the menu
+    clearGMFunctions()
+    gmMainMenu()
+    -- TODO: Setup comms log
+
+    -- Create the main ship for the trainees.
+    trainee = PlayerSpaceship():setFaction("Human Navy"):setTemplate("Atlantis")
+    trainee:setPosition(22400, 18200):setCallSign("J.E. Thompson")
+
+    trainee:addToShipLog("mission text")
+
+    -- Create JJ Johnson's ship
+    -- We create a ship rather than go straight to just having an escape pod so
+    -- if the trainees probe the area they can see his ship.
+    jj_transport = CpuShip()
+    jj_transport:setTemplate("Flavia")
+    jj_transport:setFaction("Human Navy")
+    jj_transport:setPosition(3750, 31250)
+    jj_transport:setCallSign("RT-4")
+    jj_transport:setCommsScript("")
+    jj_transport:setHull(1):setShieldsMax(1, 1)
+
+    -- Small Exuari strike team, guarding RT-4 in the nebula at G5.
+    exuari_guard1 = CpuShip()
+    exuari_guard1:setTemplate("Adder MK5")
+    exuari_guard1:setFaction("Exuari")
+    exuari_guard1:setPosition(3550, 31250)
+    exuari_guard1:setRotation(0)
+
+    exuari_guard2 = CpuShip()
+    exuari_guard2:setTemplate("Adder MK5")
+    exuari_guard2:setFaction("Exuari")
+    exuari_guard2:setPosition(3950, 31250)
+    exuari_guard2:setRotation(180)
+
+    -- Set orders
+    jj_transport:orderIdle()
+    exuari_RT4_guard1:orderIdle()
+    exuari_RT4_guard2:orderIdle()
+end
+
+function gmClearRescueJJ()
+    -- Clear and reset the menu
+    clearGMFunctions()
+    gmMainMenu()
+    -- TODO: Reset player ship
+    -- TODO: Clear JJ, pod, enemy ships, etc.
+    -- TODO: Clear comms log
+end
+
+-- ##########################################################################
+-- ## Waves ##
+-- ##########################################################################
+
+function gmSetWaves()
+    -- Clear and reset the menu
+    clearGMFunctions()
+    gmMainMenu()
+    -- TODO: Spawn ships to defend
+    -- TODO: Setup comms log
+end
+
+function gmClearWaves()
+    -- Clear and reset the menu
+    clearGMFunctions()
+    gmMainMenu()
+    -- TODO: Reset player ship
+    -- TODO: Clear ships to defend, enemies, etc.
+    -- TODO: Clear comms log
+end
+
+-- ##########################################################################
+-- ## Retrieve Data ##
+-- ##########################################################################
+
+function gmSetRetrieveData()
+    -- Clear and reset the menu
+    clearGMFunctions()
+    gmMainMenu()
+    -- TODO: Spawn satellite station
+    -- TODO: Setup comms log
+end
+
+function gmClearRetrieveData()
+    -- Clear and reset the menu
+    clearGMFunctions()
+    gmMainMenu()
+    -- TODO: Reset player ship
+    -- TODO: Clear satellite station, enemies, etc.
+    -- TODO: Clear comms log
+end
+
 -- ##########################################################################
 -- ## GM Enemy Commands ##
 -- ##########################################################################
@@ -236,12 +342,7 @@ function init()
     -- Setup GM menu
     gmMainMenu()
 
-    -- Create the main ship for the trainees.
-    trainee = PlayerSpaceship():setFaction("Human Navy"):setTemplate("Atlantis")
-    trainee:setPosition(22400, 18200):setCallSign("J.E. Thompson")
-    allowNewPlayerShips(false)
-
-    -- Create all the stations
+    -- Create the command station
     central_command = SpaceStation():setTemplate("Small Station"):setFaction("Human Navy")
     central_command:setPosition(23500, 16100):setCallSign("Central Command")
 
@@ -263,35 +364,6 @@ function init()
     -- Create 50 Asteroids
     placeRandom(Asteroid, 50, -7500, -10000, -12500, 30000, 2000)
     placeRandom(VisualAsteroid, 50, -7500, -10000, -12500, 30000, 2000)
-
-    -- Create JJ Johnson's ship
-    -- We create a ship rather than go straight to just having an escape pod so
-    -- if the trainees probe the area they can see his ship.
-    jj_transport = CpuShip()
-    jj_transport:setTemplate("Flavia")
-    jj_transport:setFaction("Human Navy")
-    jj_transport:setPosition(3750, 31250)
-    jj_transport:setCallSign("RT-4")
-    jj_transport:setCommsScript("")
-    jj_transport:setHull(1):setShieldsMax(1, 1)
-
-    -- Small Exuari strike team, guarding RT-4 in the nebula at G5.
-    exuari_guard1 = CpuShip()
-    exuari_guard1:setTemplate("Adder MK5")
-    exuari_guard1:setFaction("Exuari")
-    exuari_guard1:setPosition(3550, 31250)
-    exuari_guard1:setRotation(0)
-
-    exuari_guard2 = CpuShip()
-    exuari_guard2:setTemplate("Adder MK5")
-    exuari_guard2:setFaction("Exuari")
-    exuari_guard2:setPosition(3950, 31250)
-    exuari_guard2:setRotation(180)
-
-    -- Set orders
-    jj_transport:orderIdle()
-    exuari_RT4_guard1:orderIdle()
-    exuari_RT4_guard2:orderIdle()
 
 end
 
@@ -328,3 +400,5 @@ function placeRandom(object_type, number, x1, y1, x2, y2, random_amount)
         object_type():setPosition(x, y)
     end
 end
+
+-- vim:foldmethod=manual
