@@ -305,6 +305,15 @@ function gmRetrieveData1()
     -- Clear and reset the menu
     clearGMFunctions()
     gmMainMenu()
+
+    satellite:sendCommsMessage(trainee,
+        _("incCall", "J.E. Thompson, welcome to the E.O.S. Scope satellite. I "
+        .. "am the station-board Artificial Intelligence that runs this unmanned "
+        .. "platform. I have been informed of your mission by Central Command and "
+        .. "have prepared the data for your retrieval. Please send two crew members "
+        .. "to the data storage facility to pickup the hard drive.")
+        )
+
 end
 
 --- 2) Enemies Arrive
@@ -312,6 +321,11 @@ function gmRetrieveData2()
     -- Clear and reset the menu
     clearGMFunctions()
     gmMainMenu()
+
+    satellite:sendCommsMessage(trainee,
+        _("incCall", "J.E. Thompson, as you may already be aware, the reported "
+        .. "hostile force has now arrived. Good luck. ")
+        )
 end
 
 --- 3) Data Retrieved
@@ -319,6 +333,10 @@ function gmRetrieveData3()
     -- Clear and reset the menu
     clearGMFunctions()
     gmMainMenu()
+
+    central_command:sendCommsMessage(trainee,
+        _("incCall", "J.E. Thompson, great job retrieving the data. Report for debriefing.")
+        )
 end
 
 --- 4) Data Lost
@@ -326,6 +344,12 @@ function gmRetrieveData4()
     -- Clear and reset the menu
     clearGMFunctions()
     gmMainMenu()
+
+    central_command:sendCommsMessage(trainee,
+        _("incCall", "J.E. Thompson, it is regrettable that you've failed this "
+        .. "mission. Now our enemies will have intel that will harm the war effort "
+        .. "- and likely lead to our defeat.")
+        )
 end
 
 
