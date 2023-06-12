@@ -206,7 +206,7 @@ function gmSetRescueJJ()
     trainee = PlayerSpaceship():setFaction("Human Navy"):setTemplate("Atlantis")
     trainee:setPosition(22400, 18200):setCallSign("J.E. Thompson")
 
-    trainee:addToShipLog("mission text")
+    trainee:addToShipLog("mission text", "white")
 
     -- Create JJ Johnson's ship
     -- We create a ship rather than go straight to just having an escape pod so
