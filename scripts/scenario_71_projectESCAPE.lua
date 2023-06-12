@@ -203,7 +203,6 @@ function gmSetRescueJJ()
     -- Clear and reset the menu
     clearGMFunctions()
     gmMainMenu()
-    -- TODO: Setup comms log
 
     -- Create the main ship for the trainees.
     trainee = PlayerSpaceship():setFaction("Human Navy"):setTemplate("Atlantis")
@@ -211,7 +210,12 @@ function gmSetRescueJJ()
     trainee:setRotation(180) -- make sure it's facing away from station
     trainee:commandDock(central_command)
 
-    trainee:addToShipLog("mission text", "white")
+    trainee:addToShipLog("The diplomat, JJ Johnson, was traveling back from "
+    .. "peace talks with our enemy faction, the Exuari. We have just received a "
+    .. "distress signal from his vessel and need to respond immediately due to the "
+    .. "sensitive nature of his work. If we lose JJ, we may very well lose our "
+    .. "uneasy peace and fall into war. Ensure his safe return at all costs.",
+    "white")
 
     -- Create JJ Johnson's ship
     -- We create a ship rather than go straight to just having an escape pod so
