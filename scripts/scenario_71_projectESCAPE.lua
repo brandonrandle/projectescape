@@ -111,6 +111,8 @@ function gmRescueJJ1()
     )
     lifepod:setScanningParameters(1,1)
 
+    table.insert(friendList, lifepod)
+
     -- Notify the trainees
     central_command:sendCommsMessage(trainee,
         _("incCall", "JJ Johnson's ship has been attacked and destroyed, but "
@@ -236,6 +238,10 @@ function gmSetRescueJJ()
     jj_transport:orderIdle()
     exuari_guard1:orderIdle()
     exuari_guard2:orderIdle()
+
+    table.insert(enemyList, exuari_guard1)
+    table.insert(enemyList, exuari_guard2)
+    table.insert(friendList, jj_transport)
 end
 
 function gmClearRescueJJ()
@@ -244,13 +250,18 @@ function gmClearRescueJJ()
     gmMainMenu()
 
     trainee:destroy()
-    if jj_transport:isValid() then jj_transport:destroy() end
-    if lifepod:isValid() then lifepod:destroy() end
-    -- if exuari_guard1:isValid() then exuari_guard1:destroy() end
-    -- if exuari_guard2:isValid() then exuari_guard2:destroy() end
 
-    exuari_guard1:destroy()
-    exuari_guard2:destroy()
+    for _, friend in ipairs(friendList) do
+        if friend:isValid() then
+            friend:destroy()
+        end
+    end
+
+    for _, enemy in ipairs(enemyList) do
+        if enemy:isValid() then
+            enemy:destroy()
+        end
+    end
 
 end
 
@@ -348,6 +359,10 @@ end
 function init()
     -- Setup GM menu
     gmMainMenu()
+
+    -- Setup global variables
+    enemyList = {}
+    friendList = {}
 
     -- Create the command station
     central_command = SpaceStation():setTemplate("Small Station"):setFaction("Human Navy")
