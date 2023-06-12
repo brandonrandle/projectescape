@@ -1,16 +1,18 @@
--- Name: Project ESCAPE Mission 1 - Rescue JJ
+-- Name: Project ESCAPE
 -- Description:
 -- Type: Mission
 
 -- Scenario
--- @script scenario_71_rescueJJ
+-- @script scenario_71_projectESCAPE
 
 -- ##########################################################################
 -- ## GM MENU ##
 -- ##########################################################################
 function gmMainMenu()
     clearGMFunctions() -- Clear the menu
-    addGMFunction(_("buttonGM", "Mission Commands +"),gmMissionCommands)
+    addGMFunction(_("buttonGM", "Rescue JJ +"),gmRescueJJ)
+    addGMFunction(_("buttonGM", "Waves +"),gmWaves)
+    addGMFunction(_("buttonGM", "Retrieve the Data +"),gmRetrieveTheData)
     addGMFunction(_("buttonGM", "Enemy Commands +"),gmEnemyCommands)
     addGMFunction(_("buttonGM", "Modify Trainee Ship +"),gmModifyShip)
     addGMFunction(_("buttonGM", "End Scenario +"),gmEndScenario)
@@ -18,15 +20,15 @@ end
 
 --- Provides commands specific to the scenario for GM use
 -- TODO: remove options from this menu after they're used
-function gmMissionCommands()
+function gmRescueJJ()
     clearGMFunctions() -- Clear the menu
-    addGMFunction(_("buttonGM", "Mission Commands -"),gmMainMenu)
-    addGMFunction(_("buttonGM", "1) Destroy JJ's Ship"),gmMission1)
-    addGMFunction(_("buttonGM", "2) We're Good"),gmMission2)
-    addGMFunction(_("buttonGM", "3) Air Running Out"),gmMission3)
-    addGMFunction(_("buttonGM", "4) Suffocating"),gmMission4)
-    addGMFunction(_("buttonGM", "5) JJ Dead, Extract"),gmMission5)
-    addGMFunction(_("buttonGM", "5) JJ Alive, Extract"),gmMission6)
+    addGMFunction(_("buttonGM", "Rescue JJ -"),gmMainMenu)
+    addGMFunction(_("buttonGM", "1) Destroy JJ's Ship"),gmRescueJJ1)
+    addGMFunction(_("buttonGM", "2) We're Good"),gmRescueJJ2)
+    addGMFunction(_("buttonGM", "3) Air Running Out"),gmRescueJJ3)
+    addGMFunction(_("buttonGM", "4) Suffocating"),gmRescueJJ4)
+    addGMFunction(_("buttonGM", "5) JJ Dead, Extract"),gmRescueJJ5)
+    addGMFunction(_("buttonGM", "5) JJ Alive, Extract"),gmRescueJJ6)
 end
 
 --- Provides commands for spawning and removing enemies as-needed in any scenario
@@ -57,12 +59,12 @@ end
 -- end
 
 -- ##########################################################################
--- ## GM Mission Commands ##
+-- ## GM RescueJJ Commands ##
 -- ##########################################################################
 --- 1) Destroy JJ's Ship
 --
 -- Do this when trainees get nearby or sit around waiting too long
-function gmMission1()
+function gmRescueJJ1()
     -- Clear and reset the menu
     clearGMFunctions()
     gmMainMenu()
@@ -93,7 +95,7 @@ function gmMission1()
 end
 -- 2) We're Good
 -- Do this shortly after the capsule ejects
-function gmMission2()
+function gmRescueJJ2()
     -- Clear and reset the menu
     clearGMFunctions()
     gmMainMenu()
@@ -109,7 +111,7 @@ end
 
 -- 3) Air Running out
 -- ~1 minute later; a leak has sprung
-function gmMission3()
+function gmRescueJJ3()
     -- Clear and reset the menu
     clearGMFunctions()
     gmMainMenu()
@@ -125,7 +127,7 @@ end
 
 -- 4) Suffocating
 -- After 1-3 minutes to heighten stress, they'll die soon
-function gmMission4()
+function gmRescueJJ4()
     -- Clear and reset the menu
     clearGMFunctions()
     gmMainMenu()
@@ -139,7 +141,7 @@ end
 
 -- 5) JJ Dead, Extract
 -- After 5-6 minutes. Let them fly back to base if there's time, then end scenario
-function gmMission5()
+function gmRescueJJ5()
     -- Clear and reset the menu
     clearGMFunctions()
     gmMainMenu()
@@ -154,7 +156,7 @@ function gmMission5()
 end
 
 -- 6) JJ Alive, Extract
-function gmMission6()
+function gmRescueJJ6()
     -- Clear and reset the menu
     clearGMFunctions()
     gmMainMenu()
