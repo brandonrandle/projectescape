@@ -89,7 +89,6 @@ end
 -- ## GM RescueJJ Commands ##
 -- ##########################################################################
 --- 1) Destroy JJ's Ship
---
 -- Do this when trainees get nearby or sit around waiting too long
 function gmRescueJJ1()
     -- Clear and reset the menu
