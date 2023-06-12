@@ -51,6 +51,10 @@ end
 function gmRetrieveData()
     clearGMFunctions() -- Clear the menu
     addGMFunction(_("buttonGM", "Retrieve Data -"),gmMainMenu)
+    addGMFunction(_("buttonGM", "1) Docked at Station"),gmRetrieveData1)
+    addGMFunction(_("buttonGM", "2) Enemies Arrive"),gmRetrieveData2)
+    addGMFunction(_("buttonGM", "3) Data Retrieved"),gmRetrieveData3)
+    addGMFunction(_("buttonGM", "3) Data Lost"),gmRetrieveData4)
     addGMFunction(_("buttonGM", "Set Mission"),gmSetRetrieveData)
     addGMFunction(_("buttonGM", "Clear Mission"),gmClearRetrieveData)
     -- TODO: add steps for mission
@@ -296,21 +300,74 @@ end
 -- ## Retrieve Data ##
 -- ##########################################################################
 
+--- 1) Docked at Station
+function gmRetrieveData1()
+    -- Clear and reset the menu
+    clearGMFunctions()
+    gmMainMenu()
+end
+
+--- 2) Enemies Arrive
+function gmRetrieveData2()
+    -- Clear and reset the menu
+    clearGMFunctions()
+    gmMainMenu()
+end
+
+--- 3) Data Retrieved
+function gmRetrieveData3()
+    -- Clear and reset the menu
+    clearGMFunctions()
+    gmMainMenu()
+end
+
+--- 4) Data Lost
+function gmRetrieveData4()
+    -- Clear and reset the menu
+    clearGMFunctions()
+    gmMainMenu()
+end
+
+
 function gmSetRetrieveData()
     -- Clear and reset the menu
     clearGMFunctions()
     gmMainMenu()
-    -- TODO: Spawn satellite station
-    -- TODO: Setup comms log
+
+    satellite = SpaceStation()
+    satellite:setTemplate("Small Station")
+    satellite:setFaction("Human Navy")
+    satellite:setPosition(60500, 42100)
+    satellite:setCallSign(_("callsign-station", "Satellite Station"))
+    satellite:setCommsScript("")
+
+    table.insert(friendList, satellite)
+
+    trainee:addToShipLog("We have received reports that a hostile force is "
+    .. "enroute to one of our satellites on the border of our space. This satellite "
+    .. "has crucial data that must be retrieved before the Exuari get their hands "
+    .. "on it. Retrieve the data and return it to command. Do not allow the Exuari "
+    .. "to have it.", "white")
 end
 
 function gmClearRetrieveData()
     -- Clear and reset the menu
     clearGMFunctions()
     gmMainMenu()
-    -- TODO: Reset player ship
-    -- TODO: Clear satellite station, enemies, etc.
-    -- TODO: Clear comms log
+
+    trainee:destroy()
+
+    for _, friend in ipairs(friendList) do
+        if friend:isValid() then
+            friend:destroy()
+        end
+    end
+
+    for _, enemy in ipairs(enemyList) do
+        if enemy:isValid() then
+            enemy:destroy()
+        end
+    end
 end
 
 -- ##########################################################################
