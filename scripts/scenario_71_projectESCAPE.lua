@@ -128,10 +128,10 @@ function gmRescueJJ2()
     gmMainMenu()
 
     jj_transport:sendCommsMessage(trainee,
-        _("incCall", "Greetings crew of the J.E. Thompson, this is JJ Johnson.
-        Thank you for responding to our signal. My crew and I managed to launch
-        in an escape pod before our ship was destroyed - we should be able to
-        hold out until you can pick us up. We will stand by until then!")
+        _("incCall", "Greetings crew of the J.E. Thompson, this is JJ Johnson. "
+        .. "Thank you for responding to our signal. My crew and I managed to launch "
+        .. "in an escape pod before our ship was destroyed - we should be able to "
+        .. "hold out until you can pick us up. We will stand by until then!")
     )
 
 end
@@ -144,10 +144,10 @@ function gmRescueJJ3()
     gmMainMenu()
 
     jj_transport:sendCommsMessage(trainee,
-        _("incCall", "J.E. Thompson, come in! My crew has discovered that we
-        took some damage during the launch; we are losing air rapidly and have
-        no way to replenish it. I'm not sure how long we have, but please
-        hurry!")
+        _("incCall", "J.E. Thompson, come in! My crew has discovered that we "
+        .. "took some damage during the launch; we are losing air rapidly and have "
+        .. "no way to replenish it. I'm not sure how long we have, but please "
+        .. "hurry!")
     )
 
 end
@@ -160,8 +160,8 @@ function gmRescueJJ4()
     gmMainMenu()
 
     jj_transport:sendCommsMessage(trainee,
-        _("incCall", "J.E. Thompson, mayday, mayday, our crew is starting to
-        faint from the lack of air; we need you ASAP!")
+        _("incCall", "J.E. Thompson, mayday, mayday, our crew is starting to "
+        .. "faint from the lack of air; we need you ASAP!")
     )
 
 end
@@ -174,10 +174,10 @@ function gmRescueJJ5()
     gmMainMenu()
 
     central_command:sendCommsMessage(trainee,
-        _("incCall", "J.E. Thompson, this is Central Command. We've lost JJ
-        Johnson and his crew. This is a great tragedy not only for their
-        families and friends but also for our nation's peace as a whole. Return
-        to command for debriefing.")
+        _("incCall", "J.E. Thompson, this is Central Command. We've lost JJ "
+        .. "Johnson and his crew. This is a great tragedy not only for their "
+        .. "families and friends but also for our nation's peace as a whole. Return "
+        .. "to command for debriefing.")
     )
 
 end
@@ -189,9 +189,9 @@ function gmRescueJJ6()
     gmMainMenu()
 
     central_command:sendCommsMessage(trainee,
-        _("incCall", "J.E. Thompson, this is Central Command. Great work
-        retrieving JJ Johnson safely! Return him to command and report for your
-        debriefing.")
+        _("incCall", "J.E. Thompson, this is Central Command. Great work "
+        .. "retrieving JJ Johnson safely! Return him to command and report for your "
+        .. "debriefing.")
     )
 
 end
