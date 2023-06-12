@@ -244,19 +244,11 @@ function gmClearRescueJJ()
     gmMainMenu()
 
     trainee:destroy()
-    if jj_transport:isValid():
-        jj_transport:destroy()
+    if jj_transport:isValid() then jj_transport:destroy() end
+    if lifepod:isValid() then lifepod:destroy() end
+    if exuari_guard1:isValid() then exuari_guard1:destroy() end
+    if exuari_guard2:isValid() then exuari_guard2:destroy() end
 
-    if lifepod:isValid():
-        lifepod:destroy()
-
-    if exuari_guard1:isValid():
-        exuari_guard1:destroy()
-
-    if exuari_guard2:isValid():
-        exuari_guard2:destroy()
-
-    -- TODO: Clear comms log; might be handled by destroying ship?
 end
 
 -- ##########################################################################
