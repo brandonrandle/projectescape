@@ -246,8 +246,11 @@ function gmClearRescueJJ()
     trainee:destroy()
     if jj_transport:isValid() then jj_transport:destroy() end
     if lifepod:isValid() then lifepod:destroy() end
-    if exuari_guard1:isValid() then exuari_guard1:destroy() end
-    if exuari_guard2:isValid() then exuari_guard2:destroy() end
+    -- if exuari_guard1:isValid() then exuari_guard1:destroy() end
+    -- if exuari_guard2:isValid() then exuari_guard2:destroy() end
+
+    exuari_guard1:destroy()
+    exuari_guard2:destroy()
 
 end
 
