@@ -71,15 +71,15 @@ function gmEnemyCommands()
     addGMFunction(_("buttonGM", "Remove All Enemies"),gmRemoveAll)
 end
 
--- function gmModifyShip()
---     clearGMFunctions() -- Clear the menu
---     addGMFunction(_("buttonGM", "Modify Trainee Ship -"),gmMainMenu)
---     addGMFunction(_("buttonGM", "Reset Hull"),gmResetHull)
---     addGMFunction(_("buttonGM", "Reset Energy"),gmResetEnergy)
---     addGMFunction(_("buttonGM", "Fill Weapon Supply"),gmResetWeapons)
---     addGMFunction(_("buttonGM", "Reset Probe Supply"),gmResetProbes)
---     -- TODO: Remove weapons button
--- end
+function gmModifyShip()
+    clearGMFunctions() -- Clear the menu
+    addGMFunction(_("buttonGM", "Modify Trainee Ship -"),gmMainMenu)
+    addGMFunction(_("buttonGM", "Reset Hull"),gmResetHull)
+    addGMFunction(_("buttonGM", "Reset Energy"),gmResetEnergy)
+    addGMFunction(_("buttonGM", "Fill Weapon Supply"),gmResetWeapons)
+    addGMFunction(_("buttonGM", "Remove Weapons"),gmRemoveWeapons)
+    addGMFunction(_("buttonGM", "Reset Probe Supply"),gmResetProbes)
+end
 
 -- function gmEndScenario()
 --     clearGMFunctions() -- Clear the menu
@@ -435,6 +435,8 @@ function gmSpawnT1()
     -- Clear and reset the menu
     clearGMFunctions()
     gmMainMenu()
+
+    -- TODO: populate functionality
 end
 
 --- Spawns medium difficulty enemies at random edge of trainee ship's radar
@@ -442,6 +444,8 @@ function gmSpawnT2()
     -- Clear and reset the menu
     clearGMFunctions()
     gmMainMenu()
+
+    -- TODO: populate functionality
 end
 
 --- Spawns hard difficulty enemies at random edge of trainee ship's radar
@@ -449,6 +453,8 @@ function gmSpawnT3()
     -- Clear and reset the menu
     clearGMFunctions()
     gmMainMenu()
+
+    -- TODO: populate functionality
 end
 
 --- Spawns an obscene number of enemies all around trainee ship
@@ -456,6 +462,8 @@ function gmSpawnAll()
     -- Clear and reset the menu
     clearGMFunctions()
     gmMainMenu()
+
+    -- TODO: populate functionality
 end
 
 --- Removes all enemies from the map
@@ -463,11 +471,58 @@ function gmRemoveAll()
     -- Clear and reset the menu
     clearGMFunctions()
     gmMainMenu()
+
+    -- TODO: populate functionality
 end
 
 -- ##########################################################################
 -- ## GM Modify Trainee Ship ##
 -- ##########################################################################
+
+--- Resets trainee ship hull to full
+function gmResetHull()
+    -- Clear and reset the menu
+    clearGMFunctions()
+    gmMainMenu()
+
+    -- TODO: populate functionality
+end
+
+--- Resets trainee ship energy to full
+function gmResetEnergy()
+    -- Clear and reset the menu
+    clearGMFunctions()
+    gmMainMenu()
+
+    -- TODO: populate functionality
+end
+
+--- Refills trainee ship weapons
+function gmResetWeapons()
+    -- Clear and reset the menu
+    clearGMFunctions()
+    gmMainMenu()
+
+    -- TODO: populate functionality
+end
+
+--- Resets trainee ship probe supply
+function gmResetProbes()
+    -- Clear and reset the menu
+    clearGMFunctions()
+    gmMainMenu()
+
+    -- TODO: populate functionality
+end
+
+--- Removes weapons from trainee ship (ie missiles, etc.)
+function gmRemoveWeapons()
+    -- Clear and reset the menu
+    clearGMFunctions()
+    gmMainMenu()
+
+    -- TODO: populate functionality
+end
 
 -- ##########################################################################
 -- ## GM End Scenario ##
