@@ -105,6 +105,7 @@ function gmRescueJJ1()
     lifepod = SupplyDrop()
     lifepod:setFaction("Human Navy")
     lifepod:setPosition(3750, 31250)
+    lifepod:setCallSign("JJ Johnson's Lifepod")
     lifepod:setDescriptions(
         _("scienceDescription-lifepod", "Life Pod"),
         _("scienceDescription-lifepod", "JJ Johnson and his crew in Life Pod")
