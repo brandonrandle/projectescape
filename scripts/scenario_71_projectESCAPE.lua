@@ -81,13 +81,12 @@ function gmModifyShip()
     addGMFunction(_("buttonGM", "Reset Probe Supply"),gmResetProbes)
 end
 
--- function gmEndScenario()
---     clearGMFunctions() -- Clear the menu
---     addGMFunction(_("buttonGM", "End Scenario -"),gmMainMenu)
---     addGMFunction(_("buttonGM", "Victory"),gmVictory)
---     addGMFunction(_("buttonGM", "Defeat"),gmDefeat)
---     -- TODO: Setup victory/defeat message in a way that DOES NOT end scenario
--- end
+function gmEndScenario()
+    clearGMFunctions() -- Clear the menu
+    addGMFunction(_("buttonGM", "End Scenario -"),gmMainMenu)
+    addGMFunction(_("buttonGM", "Victory"),gmVictory)
+    addGMFunction(_("buttonGM", "Defeat"),gmDefeat)
+end
 
 -- ##########################################################################
 -- ## GM RescueJJ Commands ##
@@ -526,6 +525,27 @@ end
 
 -- ##########################################################################
 -- ## GM End Scenario ##
+-- ##########################################################################
+
+function gmVictory()
+    -- Clear and reset the menu
+    clearGMFunctions()
+    gmMainMenu()
+
+    -- TODO: populate functionality WITHOUT ending scenario
+end
+
+function gmDefeat()
+    -- Clear and reset the menu
+    clearGMFunctions()
+    gmMainMenu()
+
+    -- TODO: populate functionality WITHOUT ending scenario
+end
+
+
+-- ##########################################################################
+-- ## INIT ##
 -- ##########################################################################
 
 --- Runs when the scenario starts
