@@ -62,8 +62,8 @@ function gmModifyShip()
     addGMFunction(_("buttonGM", "Modify Trainee Ship -"),gmMainMenu)
     addGMFunction(_("buttonGM", "Reset Hull"),gmResetHull)
     addGMFunction(_("buttonGM", "Reset Energy"),gmResetEnergy)
-    addGMFunction(_("buttonGM", "Fill Weapon Supply"),gmResetWeapons)
-    addGMFunction(_("buttonGM", "Remove Weapons"),gmRemoveWeapons)
+    -- addGMFunction(_("buttonGM", "Fill Weapon Supply"),gmResetWeapons)
+    -- addGMFunction(_("buttonGM", "Remove Weapons"),gmRemoveWeapons)
     addGMFunction(_("buttonGM", "Reset Probe Supply"),gmResetProbes)
 end
 
