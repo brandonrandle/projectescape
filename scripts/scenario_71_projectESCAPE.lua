@@ -708,7 +708,6 @@ function init()
     enemyList = {}
     friendList = {}
     waveNumber = 0
-    alertLevel = "normal"
 
     -- Create the command station
     central_command = SpaceStation():setTemplate("Small Station"):setFaction("Human Navy")
@@ -736,6 +735,9 @@ function init()
 end
 
 
+-- global global?
+alertLevel = "normal"
+
 --- Runs during game loop
 -- Victory conditions handled manually by GM, so nothing monitored here so far.
 function update(delta)
@@ -743,7 +745,7 @@ function update(delta)
 
     -- GM will manage alert levels, so this will reset it constantly to what
     -- the GM has set it to
-    -- TraineeShip:commandSetAlertLevel(alertLevel)
+    TraineeShip:commandSetAlertLevel(alertLevel)
 end
 
 --- Return the distance between two objects.
