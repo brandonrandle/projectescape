@@ -7,6 +7,7 @@
 
 -- TODO: Update staff handbook with functionality in this script
 -- TODO: Update staff handbook mission assignment text to match this
+-- TODO: add manual control of player ship alert button/state
 
 -- ##########################################################################
 -- ## GM MENU ##
@@ -57,7 +58,6 @@ function gmRetrieveData()
     addGMFunction(_("buttonGM", "3) Data Lost"),gmRetrieveData4)
     addGMFunction(_("buttonGM", "Set Mission"),gmSetRetrieveData)
     addGMFunction(_("buttonGM", "Clear Mission"),gmClearRetrieveData)
-    -- TODO: add steps for mission
 end
 
 --- Provides commands for spawning and removing enemies as-needed in any scenario
@@ -532,6 +532,8 @@ function gmVictory()
     clearGMFunctions()
     gmMainMenu()
 
+    globalMessage("VICTORY")
+
     -- TODO: populate functionality WITHOUT ending scenario
 end
 
@@ -540,6 +542,7 @@ function gmDefeat()
     clearGMFunctions()
     gmMainMenu()
 
+    globalMessage("DEFEAT")
     -- TODO: populate functionality WITHOUT ending scenario
 end
 
@@ -586,7 +589,6 @@ end
 
 --- Runs during game loop
 -- Victory conditions handled manually by GM, so nothing monitored here so far.
--- TODO: Can we setup a timer that shows to the GM elapsed time?
 function update(delta)
     -- Intentionally blank
 end
