@@ -368,7 +368,7 @@ function gmSpawnNextWave()
     local totalScoreRequirement = math.pow(waveNumber * 0.8, 1.3) * 10
 
     local scoreInSpawnPoint = 0
-    local spawnDistance = 20000
+    local spawnDistance = 10000
     local spawnPointLeader = nil
     local spawn_x, spawn_y, spawn_range_x, spawn_range_y = randomSpawnPointInfo(spawnDistance)
     while totalScoreRequirement > 0 do
