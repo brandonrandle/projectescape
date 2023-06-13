@@ -334,25 +334,27 @@ function gmClearWaves()
     end
 end
 
+    -- central_command:setPosition(23500, 16100):setCallSign("Central Command")
+
 function randomSpawnPointInfo(distance)
     local x, y
     local rx, ry
     if random(0, 100) < 50 then
         if random(0, 100) < 50 then
-            x = -distance
+            x = -distance + 23500
         else
-            x = distance
+            x = distance - 23500
         end
         rx = 2500
-        y = 0
+        y = 16100
         ry = 5000 + 1000 * waveNumber
     else
-        x = 0
+        x = 23500
         rx = 5000 + 1000 * waveNumber
         if random(0, 100) < 50 then
-            y = -distance
+            y = -distance + 16100
         else
-            y = distance
+            y = distance - 23500
         end
         ry = 2500
     end
