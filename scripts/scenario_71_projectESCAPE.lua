@@ -535,7 +535,7 @@ function gmVictory()
     victory_message = "Victory! Mission Success! Report for debriefing."
 
     globalMessage(victory_message)
-    trainee:addCustomMessage("Helms", "Victory", victory_message)
+    trainee:addCustomMessage("Helms", "Helms_Victory", victory_message)
     trainee:addCustomMessage("Weapons", "Victory", victory_message)
     trainee:addCustomMessage("Engineering", "Victory", victory_message)
     trainee:addCustomMessage("Science", "Victory", victory_message)
