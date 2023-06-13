@@ -708,6 +708,7 @@ function init()
     enemyList = {}
     friendList = {}
     waveNumber = 0
+    alertLevel = "normal"
 
     -- Create the command station
     central_command = SpaceStation():setTemplate("Small Station"):setFaction("Human Navy")
@@ -733,10 +734,6 @@ function init()
     placeRandom(VisualAsteroid, 50, -7500, -10000, -12500, 30000, 2000)
 
 end
-
-
--- global global?
-alertLevel = "normal"
 
 --- Runs during game loop
 -- Victory conditions handled manually by GM, so nothing monitored here so far.
