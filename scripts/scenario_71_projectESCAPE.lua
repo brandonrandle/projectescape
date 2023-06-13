@@ -40,6 +40,7 @@ end
 function gmWaves()
     clearGMFunctions() -- Clear the menu
     addGMFunction(_("buttonGM", "Waves -"),gmMainMenu)
+    addGMFunction(_("buttonGM", "Spawn Next Wave"),gmSpawnNextWave)
     addGMFunction(_("buttonGM", "Set Mission"),gmSetWaves)
     addGMFunction(_("buttonGM", "Clear Mission"),gmClearWaves)
     -- TODO: add steps for mission
@@ -279,6 +280,8 @@ function gmSetWaves()
     -- Clear and reset the menu
     clearGMFunctions()
     gmMainMenu()
+
+    waveNumber = 0
     -- TODO: Spawn ships to defend
     -- TODO: Setup comms log
 end
@@ -287,9 +290,123 @@ function gmClearWaves()
     -- Clear and reset the menu
     clearGMFunctions()
     gmMainMenu()
+
+    waveNumber = 0
     -- TODO: Reset player ship
     -- TODO: Clear ships to defend, enemies, etc.
     -- TODO: Clear comms log
+end
+
+function randomSpawnPointInfo(distance)
+    local x, y
+    local rx, ry
+    if random(0, 100) < 50 then
+        if random(0, 100) < 50 then
+            x = -distance
+        else
+            x = distance
+        end
+        rx = 2500
+        y = 0
+        ry = 5000 + 1000 * waveNumber
+    else
+        x = 0
+        rx = 5000 + 1000 * waveNumber
+        if random(0, 100) < 50 then
+            y = -distance
+        else
+            y = distance
+        end
+        ry = 2500
+    end
+    return x, y, rx, ry
+end
+
+function gmSpawnNextWave()
+    -- Clear and reset the menu
+    clearGMFunctions()
+    gmMainMenu()
+    waveNumber = waveNumber + 1
+
+    local totalScoreRequirement = math.pow(waveNumber * 0.8, 1.3) * 10
+
+    local scoreInSpawnPoint = 0
+    local spawnDistance = 20000
+    local spawnPointLeader = nil
+    local spawn_x, spawn_y, spawn_range_x, spawn_range_y = randomSpawnPointInfo(spawnDistance)
+    while totalScoreRequirement > 0 do
+        local ship = CpuShip():setFaction("Exuari")
+        ship:setPosition(random(-spawn_range_x, spawn_range_x) + spawn_x, random(-spawn_range_y, spawn_range_y) + spawn_y)
+
+        -- Make the first ship the leader at this spawn point
+        if spawnPointLeader == nil then
+            ship:orderRoaming()
+            spawnPointLeader = ship
+        else
+            ship:orderDefendTarget(spawnPointLeader)
+        end
+
+        -- Set ship type
+        local typeRoll = random(0, 10)
+        local score
+        if typeRoll < 2 then
+            if irandom(1, 100) < 80 then
+                ship:setTemplate("MT52 Hornet")
+            else
+                ship:setTemplate("MU52 Hornet")
+            end
+            score = 5
+        elseif typeRoll < 3 then
+            if irandom(1, 100) < 80 then
+                ship:setTemplate("Adder MK5")
+            else
+                ship:setTemplate("WX-Lindworm")
+            end
+            score = 7
+        elseif typeRoll < 6 then
+            if irandom(1, 100) < 80 then
+                ship:setTemplate("Phobos T3")
+            else
+                ship:setTemplate("Piranha F12")
+            end
+            score = 15
+        elseif typeRoll < 7 then
+            ship:setTemplate("Ranus U")
+            score = 25
+        elseif typeRoll < 8 then
+            if irandom(1, 100) < 50 then
+                ship:setTemplate("Stalker Q7")
+            else
+                ship:setTemplate("Stalker R7")
+            end
+            score = 25
+        elseif typeRoll < 9 then
+            ship:setTemplate("Atlantis X23")
+            score = 50
+        else
+            ship:setTemplate("Odin")
+            score = 250
+        end
+        assert(score ~= nil)
+
+        -- Destroy ship if it was too strong else take it
+        if score > totalScoreRequirement * 1.1 + 5 then
+            ship:destroy()
+            if ship == spawnPointLeader then spawnPointLeader = nil end
+        else
+            table.insert(enemyList, ship)
+            totalScoreRequirement = totalScoreRequirement - score
+            scoreInSpawnPoint = scoreInSpawnPoint + score
+        end
+
+        -- Start new spawn point farther away
+        if scoreInSpawnPoint > totalScoreRequirement * 2.0 then
+            spawnDistance = spawnDistance + 5000
+            spawn_x, spawn_y, spawn_range_x, spawn_range_y = randomSpawnPointInfo(spawnDistance)
+            scoreInSpawnPoint = 0
+            spawnPointLeader = nil
+        end
+    end
 end
 
 -- ##########################################################################
@@ -468,7 +585,11 @@ function gmRemoveAll()
     clearGMFunctions()
     gmMainMenu()
 
-    -- TODO: populate functionality
+    for _, enemy in ipairs(enemyList) do
+        if enemy:isValid() then
+            enemy:destroy()
+        end
+    end
 end
 
 -- ##########################################################################
@@ -565,6 +686,7 @@ function init()
     TraineeShip = {}
     enemyList = {}
     friendList = {}
+    waveNumber = 0
 
     -- Create the command station
     central_command = SpaceStation():setTemplate("Small Station"):setFaction("Human Navy")
