@@ -532,9 +532,14 @@ function gmVictory()
     clearGMFunctions()
     gmMainMenu()
 
-    trainee:addCustomMessage("Helms", "victory lol", "some caption?")
+    victory_message = "Victory! Mission Success! Report for debriefing."
 
-    -- TODO: populate functionality WITHOUT ending scenario
+    globalMessage(victory_message)
+    trainee:addCustomMessage("Helms", "Victory", victory_message)
+    trainee:addCustomMessage("Weapons", "Victory", victory_message)
+    trainee:addCustomMessage("Engineering", "Victory", victory_message)
+    trainee:addCustomMessage("Science", "Victory", victory_message)
+    trainee:addCustomMessage("Relay", "Victory", victory_message)
 end
 
 function gmDefeat()
@@ -542,7 +547,14 @@ function gmDefeat()
     clearGMFunctions()
     gmMainMenu()
 
-    -- TODO: populate functionality WITHOUT ending scenario
+    defeat_message = "Defeat! Mission Failure! Report for debriefing."
+
+    globalMessage(defeat_message)
+    trainee:addCustomMessage("Helms", "Defeat", defeat_message)
+    trainee:addCustomMessage("Weapons", "Defeat", defeat_message)
+    trainee:addCustomMessage("Engineering", "Defeat", defeat_message)
+    trainee:addCustomMessage("Science", "Defeat", defeat_message)
+    trainee:addCustomMessage("Relay", "Defeat", defeat_message)
 end
 
 
