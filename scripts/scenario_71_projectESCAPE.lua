@@ -250,6 +250,8 @@ function gmClearRescueJJ()
 
     TraineeShip:destroy()
 
+    alertLevel = "normal"
+
     for _, friend in ipairs(friendList) do
         if friend:isValid() then
             friend:destroy()
@@ -324,6 +326,8 @@ function gmClearWaves()
     waveNumber = 0
 
     TraineeShip:destroy()
+
+    alertLevel = "normal"
 
     for _, friend in ipairs(friendList) do
         if friend:isValid() then
@@ -568,6 +572,8 @@ function gmClearRetrieveData()
     gmMainMenu()
 
     TraineeShip:destroy()
+
+    alertLevel = "normal"
 
     for _, friend in ipairs(friendList) do
         if friend:isValid() then
