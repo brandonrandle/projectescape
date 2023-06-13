@@ -481,7 +481,7 @@ function gmResetHull()
     clearGMFunctions()
     gmMainMenu()
 
-    -- TODO: populate functionality
+    TraineeShip:setHull(TraineeShip:getHullMax())
 end
 
 --- Resets trainee ship energy to full
@@ -490,6 +490,7 @@ function gmResetEnergy()
     clearGMFunctions()
     gmMainMenu()
 
+    TraineeShip:setHull(2)
     -- TODO: populate functionality
 end
 
