@@ -23,7 +23,6 @@ function gmMainMenu()
 end
 
 --- Rescue JJ GM Commands
--- TODO: remove options from this menu after they're used
 function gmRescueJJ()
     clearGMFunctions() -- Clear the menu
     addGMFunction(_("buttonGM", "Rescue JJ -"),gmMainMenu)
@@ -38,7 +37,6 @@ function gmRescueJJ()
 end
 
 --- Waves GM Commands
--- TODO: remove options from this menu after they're used
 function gmWaves()
     clearGMFunctions() -- Clear the menu
     addGMFunction(_("buttonGM", "Waves -"),gmMainMenu)
@@ -48,7 +46,6 @@ function gmWaves()
 end
 
 --- Retrieve Data GM Commands
--- TODO: remove options from this menu after they're used
 function gmRetrieveData()
     clearGMFunctions() -- Clear the menu
     addGMFunction(_("buttonGM", "Retrieve Data -"),gmMainMenu)
@@ -117,7 +114,7 @@ function gmRescueJJ1()
     table.insert(friendList, lifepod)
 
     -- Notify the trainees
-    central_command:sendCommsMessage(trainee,
+    central_command:sendCommsMessage(TraineeShip,
         _("incCall", "JJ Johnson's ship has been attacked and destroyed, but "
         .. "not before it launched an escape pod. \n Life signs are detected "
         .. "in the pod. Please retrieve the pod to see if JJ Johnson "
@@ -132,7 +129,7 @@ function gmRescueJJ2()
     clearGMFunctions()
     gmMainMenu()
 
-    lifepod:sendCommsMessage(trainee,
+    lifepod:sendCommsMessage(TraineeShip,
         _("incCall", "Greetings crew of the J.E. Thompson, this is JJ Johnson. "
         .. "Thank you for responding to our signal. My crew and I managed to launch "
         .. "in an escape pod before our ship was destroyed - we should be able to "
@@ -148,7 +145,7 @@ function gmRescueJJ3()
     clearGMFunctions()
     gmMainMenu()
 
-    lifepod:sendCommsMessage(trainee,
+    lifepod:sendCommsMessage(TraineeShip,
         _("incCall", "J.E. Thompson, come in! My crew has discovered that we "
         .. "took some damage during the launch; we are losing air rapidly and have "
         .. "no way to replenish it. I'm not sure how long we have, but please "
@@ -164,7 +161,7 @@ function gmRescueJJ4()
     clearGMFunctions()
     gmMainMenu()
 
-    lifepod:sendCommsMessage(trainee,
+    lifepod:sendCommsMessage(TraineeShip,
         _("incCall", "J.E. Thompson, mayday, mayday, our crew is starting to "
         .. "faint from the lack of air; we need you ASAP!")
     )
@@ -178,7 +175,7 @@ function gmRescueJJ5()
     clearGMFunctions()
     gmMainMenu()
 
-    central_command:sendCommsMessage(trainee,
+    central_command:sendCommsMessage(TraineeShip,
         _("incCall", "J.E. Thompson, this is Central Command. We've lost JJ "
         .. "Johnson and his crew. This is a great tragedy not only for their "
         .. "families and friends but also for our nation's peace as a whole. Return "
@@ -193,7 +190,7 @@ function gmRescueJJ6()
     clearGMFunctions()
     gmMainMenu()
 
-    central_command:sendCommsMessage(trainee,
+    central_command:sendCommsMessage(TraineeShip,
         _("incCall", "J.E. Thompson, this is Central Command. Great work "
         .. "retrieving JJ Johnson safely! Return him to command and report for your "
         .. "debriefing.")
@@ -207,12 +204,12 @@ function gmSetRescueJJ()
     gmMainMenu()
 
     -- Create the main ship for the trainees.
-    trainee = PlayerSpaceship():setFaction("Human Navy"):setTemplate("Atlantis")
-    trainee:setPosition(23400, 16100):setCallSign("J.E. Thompson")
-    trainee:setRotation(180) -- make sure it's facing away from station
-    trainee:commandDock(central_command)
+    TraineeShip = PlayerSpaceship():setFaction("Human Navy"):setTemplate("Atlantis")
+    TraineeShip:setPosition(23400, 16100):setCallSign("J.E. Thompson")
+    TraineeShip:setRotation(180) -- make sure it's facing away from station
+    TraineeShip:commandDock(central_command)
 
-    trainee:addToShipLog("The diplomat, JJ Johnson, was traveling back from "
+    TraineeShip:addToShipLog("The diplomat, JJ Johnson, was traveling back from "
     .. "peace talks with our enemy faction, the Exuari. We have just received a "
     .. "distress signal from his vessel and need to respond immediately due to the "
     .. "sensitive nature of his work. If we lose JJ, we may very well lose our "
@@ -258,7 +255,7 @@ function gmClearRescueJJ()
     clearGMFunctions()
     gmMainMenu()
 
-    trainee:destroy()
+    TraineeShip:destroy()
 
     for _, friend in ipairs(friendList) do
         if friend:isValid() then
@@ -305,7 +302,7 @@ function gmRetrieveData1()
     clearGMFunctions()
     gmMainMenu()
 
-    satellite:sendCommsMessage(trainee,
+    satellite:sendCommsMessage(TraineeShip,
         _("incCall", "J.E. Thompson, welcome to the E.O.S. Scope satellite. I "
         .. "am the station-board Artificial Intelligence that runs this unmanned "
         .. "platform. I have been informed of your mission by Central Command and "
@@ -346,7 +343,7 @@ function gmRetrieveData2()
     table.insert(enemyList, hostile_2)
     table.insert(enemyList, hostile_3)
 
-    satellite:sendCommsMessage(trainee,
+    satellite:sendCommsMessage(TraineeShip,
         _("incCall", "J.E. Thompson, as you may already be aware, the reported "
         .. "hostile force has now arrived. Good luck. ")
         )
@@ -358,7 +355,7 @@ function gmRetrieveData3()
     clearGMFunctions()
     gmMainMenu()
 
-    central_command:sendCommsMessage(trainee,
+    central_command:sendCommsMessage(TraineeShip,
         _("incCall", "J.E. Thompson, great job retrieving the data. Report for debriefing.")
         )
 end
@@ -369,7 +366,7 @@ function gmRetrieveData4()
     clearGMFunctions()
     gmMainMenu()
 
-    central_command:sendCommsMessage(trainee,
+    central_command:sendCommsMessage(TraineeShip,
         _("incCall", "J.E. Thompson, it is regrettable that you've failed this "
         .. "mission. Now our enemies will have intel that will harm the war effort "
         .. "- and likely lead to our defeat.")
@@ -383,12 +380,12 @@ function gmSetRetrieveData()
     gmMainMenu()
 
     -- Create the main ship for the trainees.
-    trainee = PlayerSpaceship():setFaction("Human Navy"):setTemplate("Atlantis")
-    trainee:setPosition(23400, 16100):setCallSign("J.E. Thompson")
-    trainee:setRotation(180) -- make sure it's facing away from station
-    trainee:commandDock(central_command)
+    TraineeShip = PlayerSpaceship():setFaction("Human Navy"):setTemplate("Atlantis")
+    TraineeShip:setPosition(23400, 16100):setCallSign("J.E. Thompson")
+    TraineeShip:setRotation(180) -- make sure it's facing away from station
+    TraineeShip:commandDock(central_command)
 
-    trainee:addToShipLog("We have received reports that a hostile force is "
+    TraineeShip:addToShipLog("We have received reports that a hostile force is "
     .. "enroute to one of our satellites on the border of our space. This satellite "
     .. "has crucial data that must be retrieved before the Exuari get their hands "
     .. "on it. Retrieve the data and return it to command. Do not allow the Exuari "
@@ -410,7 +407,7 @@ function gmClearRetrieveData()
     clearGMFunctions()
     gmMainMenu()
 
-    trainee:destroy()
+    TraineeShip:destroy()
 
     for _, friend in ipairs(friendList) do
         if friend:isValid() then
@@ -535,11 +532,11 @@ function gmVictory()
     victory_message = "Victory! Mission Success! Report for debriefing."
 
     globalMessage(victory_message)
-    trainee:addCustomMessage("Helms", "Helms_Victory", victory_message)
-    trainee:addCustomMessage("Weapons", "Weapons_Victory", victory_message)
-    trainee:addCustomMessage("Engineering", "Engineering_Victory", victory_message)
-    trainee:addCustomMessage("Science", "Science_Victory", victory_message)
-    trainee:addCustomMessage("Relay", "Relay_Victory", victory_message)
+    TraineeShip:addCustomMessage("Helms", "Helms_Victory", victory_message)
+    TraineeShip:addCustomMessage("Weapons", "Weapons_Victory", victory_message)
+    TraineeShip:addCustomMessage("Engineering", "Engineering_Victory", victory_message)
+    TraineeShip:addCustomMessage("Science", "Science_Victory", victory_message)
+    TraineeShip:addCustomMessage("Relay", "Relay_Victory", victory_message)
 end
 
 function gmDefeat()
@@ -550,11 +547,11 @@ function gmDefeat()
     defeat_message = "Defeat! Mission Failure! Report for debriefing."
 
     globalMessage(defeat_message)
-    trainee:addCustomMessage("Helms", "Helms_Defeat", defeat_message)
-    trainee:addCustomMessage("Weapons", "Weapons_Defeat", defeat_message)
-    trainee:addCustomMessage("Engineering", "Engineering_Defeat", defeat_message)
-    trainee:addCustomMessage("Science", "Science_Defeat", defeat_message)
-    trainee:addCustomMessage("Relay", "Relay_Defeat", defeat_message)
+    TraineeShip:addCustomMessage("Helms", "Helms_Defeat", defeat_message)
+    TraineeShip:addCustomMessage("Weapons", "Weapons_Defeat", defeat_message)
+    TraineeShip:addCustomMessage("Engineering", "Engineering_Defeat", defeat_message)
+    TraineeShip:addCustomMessage("Science", "Science_Defeat", defeat_message)
+    TraineeShip:addCustomMessage("Relay", "Relay_Defeat", defeat_message)
 end
 
 
@@ -569,6 +566,7 @@ function init()
     gmMainMenu()
 
     -- Setup global variables
+    TraineeShip = {}
     enemyList = {}
     friendList = {}
 
