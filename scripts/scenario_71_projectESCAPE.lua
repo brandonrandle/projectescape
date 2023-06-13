@@ -17,7 +17,6 @@ function gmMainMenu()
     addGMFunction(_("buttonGM", "Rescue JJ           +"),gmRescueJJ)
     addGMFunction(_("buttonGM", "Waves               +"),gmWaves)
     addGMFunction(_("buttonGM", "Retrieve Data       +"),gmRetrieveData)
-    addGMFunction(_("buttonGM", "Enemy Commands     +"),gmEnemyCommands)
     addGMFunction(_("buttonGM", "Modify Trainee Ship +"),gmModifyShip)
     addGMFunction(_("buttonGM", "End Scenario        +"),gmEndScenario)
 end
@@ -56,17 +55,6 @@ function gmRetrieveData()
     addGMFunction(_("buttonGM", "3) Data Lost"),gmRetrieveData4)
     addGMFunction(_("buttonGM", "Set Mission"),gmSetRetrieveData)
     addGMFunction(_("buttonGM", "Clear Mission"),gmClearRetrieveData)
-end
-
---- Provides commands for spawning and removing enemies as-needed in any scenario
-function gmEnemyCommands()
-    clearGMFunctions() -- Clear the menu
-    addGMFunction(_("buttonGM", "Enemy Commands -"),gmMainMenu)
-    addGMFunction(_("buttonGM", "Spawn Tier 1 Enemies"),gmSpawnT1)
-    addGMFunction(_("buttonGM", "Spawn Tier 2 Enemies"),gmSpawnT2)
-    addGMFunction(_("buttonGM", "Spawn Tier 3 Enemies"),gmSpawnT3)
-    addGMFunction(_("buttonGM", "Spawn Overwhelming Enemies"),gmSpawnAll)
-    addGMFunction(_("buttonGM", "Remove All Enemies"),gmRemoveAll)
 end
 
 function gmModifyShip()
@@ -282,8 +270,47 @@ function gmSetWaves()
     gmMainMenu()
 
     waveNumber = 0
-    -- TODO: Spawn ships to defend
-    -- TODO: Setup comms log
+
+    -- Create the main ship for the trainees.
+    TraineeShip = PlayerSpaceship():setFaction("Human Navy"):setTemplate("Atlantis")
+    TraineeShip:setPosition(23400, 16100):setCallSign("J.E. Thompson")
+    TraineeShip:setRotation(180) -- make sure it's facing away from station
+    TraineeShip:commandDock(central_command)
+
+    TraineeShip:addToShipLog("The attack on JJ Johnson has shown that our peace "
+    .. "with the Exuari faction is over and war has begun. We have received reports "
+    .. "that an attack on Central Command is soon to take place. We have requested "
+    .. "reinforcements, but until they arrive, you and the other ships already "
+    .. "on-station must defend us. They could arrive at any moment - be prepared.", "white")
+
+    central_command:setPosition(23500, 16100):setCallSign("Central Command")
+    human_m1 = CpuShip()
+    human_m1:setFaction("Human Navy")
+    human_m1:setTemplate("MT52 Hornet")
+    human_m1:setCallSign("HM1")
+    human_m1:setScanned(true)
+    human_m1:setPosition(23490, 16050)
+    human_m1:orderDefendTarget(central_command)
+
+    human_m2 = CpuShip()
+    human_m2:setFaction("Human Navy")
+    human_m2:setTemplate("MT52 Hornet")
+    human_m2:setCallSign("HM2")
+    human_m2:setScanned(true)
+    human_m1:setPosition(23490, 16050)
+    human_m2:orderDefendTarget(central_command)
+
+    human_m3 = CpuShip()
+    human_m3:setFaction("Human Navy")
+    human_m3:setTemplate("MT52 Hornet")
+    human_m3:setCallSign("HM3")
+    human_m3:setScanned(true)
+    human_m1:setPosition(23490, 16050)
+    human_m3:orderDefendTarget(central_command)
+
+    table.insert(friendList, human_m1)
+    table.insert(friendList, human_m2)
+    table.insert(friendList, human_m3)
 end
 
 function gmClearWaves()
@@ -292,9 +319,20 @@ function gmClearWaves()
     gmMainMenu()
 
     waveNumber = 0
-    -- TODO: Reset player ship
-    -- TODO: Clear ships to defend, enemies, etc.
-    -- TODO: Clear comms log
+
+    TraineeShip:destroy()
+
+    for _, friend in ipairs(friendList) do
+        if friend:isValid() then
+            friend:destroy()
+        end
+    end
+
+    for _, enemy in ipairs(enemyList) do
+        if enemy:isValid() then
+            enemy:destroy()
+        end
+    end
 end
 
 function randomSpawnPointInfo(distance)
@@ -531,59 +569,6 @@ function gmClearRetrieveData()
             friend:destroy()
         end
     end
-
-    for _, enemy in ipairs(enemyList) do
-        if enemy:isValid() then
-            enemy:destroy()
-        end
-    end
-end
-
--- ##########################################################################
--- ## GM Enemy Commands ##
--- ##########################################################################
-
---- Spawns easy difficulty enemies at random edge of trainee ship's radar
-function gmSpawnT1()
-    -- Clear and reset the menu
-    clearGMFunctions()
-    gmMainMenu()
-
-    -- TODO: populate functionality
-end
-
---- Spawns medium difficulty enemies at random edge of trainee ship's radar
-function gmSpawnT2()
-    -- Clear and reset the menu
-    clearGMFunctions()
-    gmMainMenu()
-
-    -- TODO: populate functionality
-end
-
---- Spawns hard difficulty enemies at random edge of trainee ship's radar
-function gmSpawnT3()
-    -- Clear and reset the menu
-    clearGMFunctions()
-    gmMainMenu()
-
-    -- TODO: populate functionality
-end
-
---- Spawns an obscene number of enemies all around trainee ship
-function gmSpawnAll()
-    -- Clear and reset the menu
-    clearGMFunctions()
-    gmMainMenu()
-
-    -- TODO: populate functionality
-end
-
---- Removes all enemies from the map
-function gmRemoveAll()
-    -- Clear and reset the menu
-    clearGMFunctions()
-    gmMainMenu()
 
     for _, enemy in ipairs(enemyList) do
         if enemy:isValid() then
