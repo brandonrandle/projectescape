@@ -532,7 +532,7 @@ function gmVictory()
     clearGMFunctions()
     gmMainMenu()
 
-    globalMessage("VICTORY")
+    trainee:addCustomMessage("Helms", "victory lol", "some caption?")
 
     -- TODO: populate functionality WITHOUT ending scenario
 end
@@ -542,7 +542,6 @@ function gmDefeat()
     clearGMFunctions()
     gmMainMenu()
 
-    globalMessage("DEFEAT")
     -- TODO: populate functionality WITHOUT ending scenario
 end
 
