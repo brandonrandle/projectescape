@@ -490,18 +490,15 @@ function gmResetEnergy()
     clearGMFunctions()
     gmMainMenu()
 
-    TraineeShip:setHull(2)
-    -- TODO: populate functionality
+    TraineeShip:setEnergy(TraineeShip:getEnergyLevelMax())
 end
 
---- Refills trainee ship weapons
-function gmResetWeapons()
-    -- Clear and reset the menu
-    clearGMFunctions()
-    gmMainMenu()
-
-    -- TODO: populate functionality
-end
+-- --- Refills trainee ship weapons
+-- function gmResetWeapons()
+--     -- Clear and reset the menu
+--     clearGMFunctions()
+--     gmMainMenu()
+-- end
 
 --- Resets trainee ship probe supply
 function gmResetProbes()
@@ -509,17 +506,15 @@ function gmResetProbes()
     clearGMFunctions()
     gmMainMenu()
 
-    -- TODO: populate functionality
+    TraineeShip:setScanProbeCount(TraineeShip:getMaxScanProbeCount())
 end
 
---- Removes weapons from trainee ship (ie missiles, etc.)
-function gmRemoveWeapons()
-    -- Clear and reset the menu
-    clearGMFunctions()
-    gmMainMenu()
-
-    -- TODO: populate functionality
-end
+-- --- Removes weapons from trainee ship (ie missiles, etc.)
+-- function gmRemoveWeapons()
+--     -- Clear and reset the menu
+--     clearGMFunctions()
+--     gmMainMenu()
+-- end
 
 -- ##########################################################################
 -- ## GM End Scenario ##
