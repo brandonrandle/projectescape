@@ -671,7 +671,6 @@ function gmAlertNormal()
     gmMainMenu()
 
     alertLevel = "normal"
-    -- TraineeShip:commandSetAlertLevel("normal")
 end
 
 function gmAlertYellow()
@@ -680,7 +679,6 @@ function gmAlertYellow()
     gmMainMenu()
 
     alertLevel = "yellow"
-    -- TraineeShip:commandSetAlertLevel("yellow")
 end
 
 function gmAlertRed()
@@ -689,7 +687,6 @@ function gmAlertRed()
     gmMainMenu()
 
     alertLevel = "red"
-    -- TraineeShip:commandSetAlertLevel("red")
 end
 
 
