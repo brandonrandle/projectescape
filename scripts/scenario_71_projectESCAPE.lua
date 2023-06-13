@@ -671,6 +671,7 @@ function gmAlertNormal()
     gmMainMenu()
 
     alertLevel = "Normal"
+    TraineeShip:commandSetAlertLevel(alertLevel)
 end
 
 function gmAlertYellow()
@@ -679,6 +680,7 @@ function gmAlertYellow()
     gmMainMenu()
 
     alertlevel = "YELLOW ALERT"
+    TraineeShip:commandSetAlertLevel(alertLevel)
 end
 
 function gmAlertRed()
@@ -687,6 +689,7 @@ function gmAlertRed()
     gmMainMenu()
 
     alertlevel = "RED ALERT"
+    TraineeShip:commandSetAlertLevel(alertLevel)
 end
 
 
@@ -740,7 +743,7 @@ function update(delta)
 
     -- GM will manage alert levels, so this will reset it constantly to what
     -- the GM has set it to
-    TraineeShip:commandSetAlertLevel(alertLevel)
+    -- TraineeShip:commandSetAlertLevel(alertLevel)
 end
 
 --- Return the distance between two objects.
