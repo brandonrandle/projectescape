@@ -5,10 +5,6 @@
 -- Scenario
 -- @script scenario_71_projectESCAPE
 
--- TODO: Update staff handbook with functionality in this script
--- TODO: Update staff handbook mission assignment text to match this
--- TODO: add manual control of player ship alert button/state
-
 -- ##########################################################################
 -- ## GM MENU ##
 -- ##########################################################################
@@ -19,6 +15,7 @@ function gmMainMenu()
     addGMFunction(_("buttonGM", "Retrieve Data       +"),gmRetrieveData)
     addGMFunction(_("buttonGM", "Modify Trainee Ship +"),gmModifyShip)
     addGMFunction(_("buttonGM", "End Scenario        +"),gmEndScenario)
+    addGMFunction(_("buttonGM", "Alert Level         +"),gmAlertLevel)
 end
 
 --- Rescue JJ GM Commands
@@ -42,7 +39,6 @@ function gmWaves()
     addGMFunction(_("buttonGM", "Spawn Next Wave"),gmSpawnNextWave)
     addGMFunction(_("buttonGM", "Set Mission"),gmSetWaves)
     addGMFunction(_("buttonGM", "Clear Mission"),gmClearWaves)
-    -- TODO: add steps for mission
 end
 
 --- Retrieve Data GM Commands
@@ -72,6 +68,14 @@ function gmEndScenario()
     addGMFunction(_("buttonGM", "End Scenario -"),gmMainMenu)
     addGMFunction(_("buttonGM", "Victory"),gmVictory)
     addGMFunction(_("buttonGM", "Defeat"),gmDefeat)
+end
+
+function gmAlertLevel()
+    clearGMFunctions() -- Clear the menu
+    addGMFunction(_("buttonGM", "Alert level -"),gmMainMenu)
+    addGMFunction(_("buttonGM", "Normal"),gmAlertNormal)
+    addGMFunction(_("buttonGM", "Yellow"),gmAlertYellow)
+    addGMFunction(_("buttonGM", "Red"),gmAlertRed)
 end
 
 -- ##########################################################################
@@ -657,6 +661,34 @@ function gmDefeat()
     TraineeShip:addCustomMessage("Relay", "Relay_Defeat", defeat_message)
 end
 
+-- ##########################################################################
+-- ## GM Alert Level ##
+-- ##########################################################################
+
+function gmAlertNormal()
+    -- Clear and reset the menu
+    clearGMFunctions()
+    gmMainMenu()
+
+    alertLevel = "Normal"
+end
+
+function gmAlertYellow()
+    -- Clear and reset the menu
+    clearGMFunctions()
+    gmMainMenu()
+
+    alertlevel = "YELLOW ALERT"
+end
+
+function gmAlertRed()
+    -- Clear and reset the menu
+    clearGMFunctions()
+    gmMainMenu()
+
+    alertlevel = "RED ALERT"
+end
+
 
 -- ##########################################################################
 -- ## INIT ##
@@ -673,6 +705,7 @@ function init()
     enemyList = {}
     friendList = {}
     waveNumber = 0
+    alertLevel = "Normal"
 
     -- Create the command station
     central_command = SpaceStation():setTemplate("Small Station"):setFaction("Human Navy")
@@ -704,6 +737,10 @@ end
 -- Victory conditions handled manually by GM, so nothing monitored here so far.
 function update(delta)
     -- Intentionally blank
+
+    -- GM will manage alert levels, so this will reset it constantly to what
+    -- the GM has set it to
+    TraineeShip:commandSetAlertLevel(alertLevel)
 end
 
 --- Return the distance between two objects.
