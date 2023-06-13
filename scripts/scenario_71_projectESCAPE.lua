@@ -536,10 +536,10 @@ function gmVictory()
 
     globalMessage(victory_message)
     trainee:addCustomMessage("Helms", "Helms_Victory", victory_message)
-    trainee:addCustomMessage("Weapons", "Victory", victory_message)
-    trainee:addCustomMessage("Engineering", "Victory", victory_message)
-    trainee:addCustomMessage("Science", "Victory", victory_message)
-    trainee:addCustomMessage("Relay", "Victory", victory_message)
+    trainee:addCustomMessage("Weapons", "Weapons_Victory", victory_message)
+    trainee:addCustomMessage("Engineering", "Engineering_Victory", victory_message)
+    trainee:addCustomMessage("Science", "Science_Victory", victory_message)
+    trainee:addCustomMessage("Relay", "Relay_Victory", victory_message)
 end
 
 function gmDefeat()
@@ -550,11 +550,11 @@ function gmDefeat()
     defeat_message = "Defeat! Mission Failure! Report for debriefing."
 
     globalMessage(defeat_message)
-    trainee:addCustomMessage("Helms", "Defeat", defeat_message)
-    trainee:addCustomMessage("Weapons", "Defeat", defeat_message)
-    trainee:addCustomMessage("Engineering", "Defeat", defeat_message)
-    trainee:addCustomMessage("Science", "Defeat", defeat_message)
-    trainee:addCustomMessage("Relay", "Defeat", defeat_message)
+    trainee:addCustomMessage("Helms", "Helms_Defeat", defeat_message)
+    trainee:addCustomMessage("Weapons", "Weapons_Defeat", defeat_message)
+    trainee:addCustomMessage("Engineering", "Engineering_Defeat", defeat_message)
+    trainee:addCustomMessage("Science", "Science_Defeat", defeat_message)
+    trainee:addCustomMessage("Relay", "Relay_Defeat", defeat_message)
 end
 
 
