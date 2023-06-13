@@ -670,8 +670,7 @@ function gmAlertNormal()
     clearGMFunctions()
     gmMainMenu()
 
-    alertLevel = "Normal"
-    TraineeShip:commandSetAlertLevel(alertLevel)
+    alertLevel = "normal"
 end
 
 function gmAlertYellow()
@@ -679,8 +678,7 @@ function gmAlertYellow()
     clearGMFunctions()
     gmMainMenu()
 
-    alertlevel = "YELLOW ALERT"
-    TraineeShip:commandSetAlertLevel(alertLevel)
+    alertlevel = "yellow"
 end
 
 function gmAlertRed()
@@ -688,8 +686,7 @@ function gmAlertRed()
     clearGMFunctions()
     gmMainMenu()
 
-    alertlevel = "RED ALERT"
-    TraineeShip:commandSetAlertLevel(alertLevel)
+    alertlevel = "red"
 end
 
 
@@ -708,7 +705,7 @@ function init()
     enemyList = {}
     friendList = {}
     waveNumber = 0
-    alertLevel = "Normal"
+    alertLevel = "normal"
 
     -- Create the command station
     central_command = SpaceStation():setTemplate("Small Station"):setFaction("Human Navy")
@@ -743,7 +740,7 @@ function update(delta)
 
     -- GM will manage alert levels, so this will reset it constantly to what
     -- the GM has set it to
-    -- TraineeShip:commandSetAlertLevel(alertLevel)
+    TraineeShip:commandSetAlertLevel(alertLevel)
 end
 
 --- Return the distance between two objects.
